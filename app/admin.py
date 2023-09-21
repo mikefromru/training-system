@@ -4,6 +4,7 @@ from .models import (
                     ProductAccess,
                     Lesson,
                     LessonProduct,
+                    LessonScan,
                 )
 
 
@@ -24,6 +25,11 @@ class LessonAdmin(admin.ModelAdmin):
 
 @admin.register(LessonProduct)
 class LessonProductAdmin(admin.ModelAdmin):
+
+    pass
+
+@admin.register(LessonScan)
+class LessonScanAdmin(admin.ModelAdmin):
 
     pass
 

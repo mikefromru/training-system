@@ -8,12 +8,16 @@ class Product(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} - {self.owner}'
 
 class ProductAccess(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.user} has accsess to {self.product}'
+
 
 #
 class Lesson(models.Model):
@@ -29,6 +33,10 @@ class LessonProduct(models.Model):
 
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.lesson}, {self.product}'
+
 
 #
 class LessonScan(models.Model):
