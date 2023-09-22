@@ -25,7 +25,7 @@ class Lesson(models.Model):
     name = models.CharField(max_length=255)
     video_link = models.URLField()
     duration = models.PositiveIntegerField()
-    products = models.ManyToManyField(Product)
+    products = models.ManyToManyField(Product, related_name='lessons')
 
     def __str__(self):
         return self.name
@@ -48,9 +48,9 @@ class LessonScan(models.Model):
     view_status = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
-        if self.viewed_time >= self.lesson.duration * 0.8:
-            self.viewed = True
+        if self.view_time >= self.lesson.duration * 0.8:
+            self.view_status = True
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.lesson}, {self.viewed}, {self.viewed_time=}'
+        return f'{self.lesson}, {self.view_status=}, {self.view_time=}, {self.user}'
